@@ -20,6 +20,7 @@ ancestor(A,D) :- parent(A,D).
 ancestor(A,D) :- parent(A,I), ancestor(I,D).
 
 main :-
+    write('=== Practical Family Tree ==='), nl, nl,
     write('Fathers of jim: '), findall(F, father(F,jim), L1), write(L1), nl,
     write('Mother of bob: '), findall(M, mother(M,bob), L2), write(L2), nl,
     write('Siblings of pat: '), findall(S, sibling(S,pat), L3), write(L3), nl,
@@ -31,10 +32,12 @@ main :-
 ### Output 
 
 
-Fathers of jim: [peter,bob]
+=== Practical Family Tree ===
+
+Fathers of jim: [peter]
 Mother of bob: [pam]
-Siblings of pat: [ann,ann]
-Grandparents of jim: [bob,bob]
-Ancestors of jim: [pat,peter,bob,bob]
+Siblings of pat: [ann]
+Grandparents of jim: [bob]
+Ancestors of jim: [pat,peter,tom,pam,bob]
 
 Practical Done!
