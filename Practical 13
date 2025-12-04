@@ -1,0 +1,20 @@
+=== Practical 13: Maximum of List ===
+
+:- initialization(main).
+
+maxlist([X], X).
+maxlist([H|T], M) :-
+    maxlist(T, M1),
+    M is max(H, M1).
+
+main :-
+    write('=== Practical Maximum of List ==='), nl, nl,
+    maxlist([5,2,9,1,7], M1), write('Max of [5,2,9,1,7] = '), write(M1), nl,
+    maxlist([10,20,3], M2), write('Max of [10,20,3] = '), write(M2), nl.
+
+###Output
+
+=== Practical Maximum of List ===
+
+Max of [5,2,9,1,7] = 9
+Max of [10,20,3] = 20
