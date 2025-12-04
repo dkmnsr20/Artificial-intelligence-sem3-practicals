@@ -1,0 +1,19 @@
+=== Practical 4: Sum ===
+
+
+:- initialization(main).
+
+sum(A, B, S) :- S is A + B.
+
+main :-
+    write('=== Practical Sum ==='), nl, nl,
+    sum(10, 20, R1), write('10 + 20 = '), write(R1), nl,
+    sum(-5, 8, R2), write('-5 + 8 = '), write(R2), nl.
+
+
+###Output
+
+=== Practical Sum ===
+
+10 + 20 = 30
+-5 + 8 = 3
