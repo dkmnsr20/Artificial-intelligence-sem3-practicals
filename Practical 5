@@ -1,0 +1,22 @@
+=== Practical 5: Maximum ===
+
+
+:- initialization(main).
+
+max(X, Y, X) :- X >= Y.
+max(X, Y, Y) :- X < Y.
+
+main :-
+    write('=== Practical Maximum ==='), nl, nl,
+    max(7, 12, R1), write('max(7,12) = '), write(R1), nl,
+    max(15, 9, R2), write('max(15,9) = '), write(R2), nl,
+    max(5, 5, R3), write('max(5,5) = '), write(R3), nl.
+
+
+###Output
+
+=== Practical Maximum ===
+
+max(7,12) = 12
+max(15,9) = 15
+max(5,5) = 5
