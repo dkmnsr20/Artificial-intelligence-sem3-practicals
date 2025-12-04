@@ -1,0 +1,23 @@
+=== Practical 6: Factorial ===
+
+
+:- initialization(main).
+
+factorial(0, 1).
+factorial(N, F) :- N > 0, M is N-1, factorial(M, FM), F is N * FM.
+
+main :-
+    write('=== Practical Factorial ==='), nl, nl,
+    factorial(0, R0), write('0! = '), write(R0), nl,
+    factorial(5, R5), write('5! = '), write(R5), nl,
+    factorial(7, R7), write('7! = '), write(R7), nl.
+
+
+###Output
+
+
+=== Practical Factorial ===
+
+0! = 1
+5! = 120
+7! = 5040
