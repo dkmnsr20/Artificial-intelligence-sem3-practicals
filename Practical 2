@@ -1,0 +1,22 @@
+=== Practical 2: List Concatenation ===
+
+
+:- initialization(main).
+
+conc([], L, L).
+conc([H|T], L, [H|R]) :- conc(T, L, R).
+
+main :-
+    write('=== Practical List Concatenation ==='), nl, nl,
+    conc([1,2,3], [4,5,6], R1), write('conc([1,2,3],[4,5,6],R) -> '), write(R1), nl,
+    conc([], [a,b], R2), write('conc([],[a,b],R) -> '), write(R2), nl,
+    conc([x], [y,z], R3), write('conc([x],[y,z],R) -> '), write(R3), nl.
+
+
+###Output
+
+=== Practical List Concatenation ===
+
+conc([1,2,3],[4,5,6],R) -> [1,2,3,4,5,6]
+conc([],[a,b],R) -> [a,b]
+conc([x],[y,z],R) -> [x,y,z]
