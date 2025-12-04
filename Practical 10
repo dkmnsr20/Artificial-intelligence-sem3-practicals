@@ -1,0 +1,19 @@
+=== Practical 10: Member Check ===
+
+:- initialization(main).
+
+memb(X, [X|_]).
+memb(X, [_|T]) :- memb(X, T).
+
+main :-
+    write('=== Practical Member Check ==='), nl, nl,
+    (memb(3, [1,2,3,4]) -> write('3 is a member of [1,2,3,4]'); write('3 is NOT a member')), nl,
+    (memb(7, [1,2,3,4]) -> write('7 is a member of [1,2,3,4]'); write('7 is NOT a member')), nl.
+
+
+###Output
+
+=== Practical Member Check ===
+
+3 is a member of [1,2,3,4]
+7 is NOT a member
