@@ -1,0 +1,33 @@
+=== Practical 3: Reverse List ===
+
+
+:- initialization(main).
+
+main :-
+    write('=== Practical Reverse a List ==='), nl, nl,
+
+    reverse([1,2,3,4], R1),
+    write('reverse([1,2,3,4]) -> '), write(R1), nl,
+
+    reverse([a,b,c,d,e], R2),
+    write('reverse([a,b,c,d,e]) -> '), write(R2), nl,
+
+    reverse([], R3),
+    write('reverse([]) -> '), write(R3), nl,
+
+    reverse([x], R4),
+    write('reverse([x]) -> '), write(R4), nl, nl,
+
+    write('Practical completed'), nl.
+
+
+###Output
+
+=== Practical Reverse a List ===
+
+reverse([1,2,3,4]) -> [4,3,2,1]
+reverse([a,b,c,d,e]) -> [e,d,c,b,a]
+reverse([]) -> []
+reverse([x]) -> [x]
+
+Practical completed
