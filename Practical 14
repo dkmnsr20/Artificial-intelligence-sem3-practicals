@@ -1,0 +1,25 @@
+=== Practical 14: Insert at Nth Position ===
+
+:- initialization(main).
+
+insert(I, 1, L, [I|L]).
+insert(I, N, [H|T], [H|R]) :-
+    N > 1,
+    N1 is N - 1,
+    insert(I, N1, T, R).
+
+main :-
+    write('=== Practical Insert at Nth Position ==='), nl, nl,
+    insert(99, 3, [1,2,3,4], R1),
+    write('Insert 99 at pos 3 in [1,2,3,4] -> '), write(R1), nl,
+
+    insert(10, 1, [5,6,7], R2),
+    write('Insert 10 at pos 1 in [5,6,7] -> '), write(R2), nl.
+
+
+###Output 
+
+=== Practical Insert at Nth Position ===
+
+Insert 99 at pos 3 in [1,2,3,4] -> [1,2,99,3,4]
+Insert 10 at pos 1 in [5,6,7] -> [10,5,6,7]
