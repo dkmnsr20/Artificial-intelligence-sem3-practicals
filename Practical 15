@@ -1,0 +1,25 @@
+=== Practical 15: Delete Nth Element ===
+
+:- initialization(main).
+
+delete_n(1, [_|T], T).
+delete_n(N, [H|T], [H|R]) :-
+    N > 1,
+    N1 is N - 1,
+    delete_n(N1, T, R).
+
+main :-
+    write('=== Practical Delete Nth Element ==='), nl, nl,
+    delete_n(3, [1,2,3,4,5], R1),
+    write('Delete pos 3 from [1,2,3,4,5] -> '), write(R1), nl,
+
+    delete_n(1, [10,20,30], R2),
+    write('Delete pos 1 from [10,20,30] -> '), write(R2), nl.
+
+
+###Output
+
+=== Practical Delete Nth Element ===
+
+Delete pos 3 from [1,2,3,4,5] -> [1,2,4,5]
+Delete pos 1 from [10,20,30] -> [20,30]
