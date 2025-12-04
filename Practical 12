@@ -1,0 +1,22 @@
+=== Practical 12: Even & Odd Length Check ===
+
+:- initialization(main).
+
+evenlength([]).
+evenlength([_,_|T]) :- evenlength(T).
+
+oddlength([_]).
+oddlength([_,_|T]) :- oddlength(T).
+
+main :-
+    write('=== Practical Even/Odd Length Check ==='), nl, nl,
+    (evenlength([1,2,3,4]) -> write('[1,2,3,4] is even length'); write('Not even length')), nl,
+    (oddlength([1,2,3,4,5]) -> write('[1,2,3,4,5] is odd length'); write('Not odd length')), nl.
+
+
+###Output
+
+=== Practical Even/Odd Length Check ===
+
+[1,2,3,4] is even length
+[1,2,3,4,5] is odd length
