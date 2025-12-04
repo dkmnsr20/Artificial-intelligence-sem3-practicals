@@ -1,0 +1,40 @@
+## Practical 1: Family Tree and Relationships
+
+### Code (save as practical1.pl)
+
+:- initialization(main).
+
+male(tom). male(bob). male(peter). male(jim).
+female(pam). female(liz). female(ann). female(pat).
+
+parent(tom, bob). parent(pam, bob).
+parent(tom, liz).
+parent(bob, ann). parent(bob, pat).
+parent(pat, jim). parent(peter, jim).
+
+father(F,C) :- parent(F,C), male(F).
+mother(M,C) :- parent(M,C), female(M).
+sibling(X,Y) :- parent(P,X), parent(P,Y), X \= Y.
+grandparent(GP,GC) :- parent(GP,P), parent(P,GC).
+ancestor(A,D) :- parent(A,D).
+ancestor(A,D) :- parent(A,I), ancestor(I,D).
+
+main :-
+    write('Fathers of jim: '), findall(F, father(F,jim), L1), write(L1), nl,
+    write('Mother of bob: '), findall(M, mother(M,bob), L2), write(L2), nl,
+    write('Siblings of pat: '), findall(S, sibling(S,pat), L3), write(L3), nl,
+    write('Grandparents of jim: '), findall(G, grandparent(G,jim), L4), write(L4), nl,
+    write('Ancestors of jim: '), findall(A, ancestor(A,jim), L5), write(L5), nl, nl,
+    write('Practical Done!'), nl.
+
+
+### Output 
+
+
+Fathers of jim: [peter,bob]
+Mother of bob: [pam]
+Siblings of pat: [ann,ann]
+Grandparents of jim: [bob,bob]
+Ancestors of jim: [pat,peter,bob,bob]
+
+Practical Done!
