@@ -1,0 +1,22 @@
+=== Practical 8: Power ===
+
+
+:- initialization(main).
+
+power(_, 0, 1).
+power(Num, Pow, Ans) :- Pow > 0, P1 is Pow-1, power(Num, P1, A1), Ans is Num * A1.
+
+main :-
+    write('=== Practical Power ==='), nl, nl,
+    power(2, 10, R1), write('2^10 = '), write(R1), nl,
+    power(5, 3, R2), write('5^3 = '), write(R2), nl,
+    power(10, 0, R3), write('10^0 = '), write(R3), nl.
+
+
+###Output
+
+=== Practical Power ===
+
+2^10 = 1024
+5^3 = 125
+10^0 = 1
