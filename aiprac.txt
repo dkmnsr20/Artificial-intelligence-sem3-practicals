@@ -1,0 +1,354 @@
+1. family relation program---
+
+/* ============================
+   FACTS: Basic Family Details
+   ============================ */
+
+% gender facts
+male(john).
+male(robert).
+male(david).
+male(michael).
+male(chris).
+male(kevin).
+
+female(linda).
+female(susan).
+female(mary).
+female(lisa).
+female(sophia).
+female(anna).
+
+% parent(Parent, Child)
+parent(john, robert).
+parent(linda, robert).
+
+parent(john, mary).
+parent(linda, mary).
+
+parent(robert, david).
+parent(robert, sophia).
+
+parent(mary, michael).
+parent(mary, anna).
+
+parent(susan, chris).
+parent(david,  chris).
+
+parent(lisa, kevin).
+parent(michael, kevin).
+
+/* ============================
+   RULES: Family Relationships
+   ============================ */
+
+% father(F, C) – F is the father of C
+father(F, C) :-
+    parent(F, C),
+    male(F).
+
+% mother(M, C) – M is the mother of C
+mother(M, C) :-
+    parent(M, C),
+    female(M).
+
+% child(C, P) – C is child of P
+child(C, P) :-
+    parent(P, C).
+
+% sibling(X, Y) – share at least one parent
+sibling(X, Y) :-
+    parent(P, X),
+    parent(P, Y),
+    X \= Y.
+
+% brother(B, X)
+brother(B, X) :-
+    sibling(B, X),
+    male(B).
+
+% sister(S, X)
+sister(S, X) :-
+    sibling(S, X),
+    female(S).
+
+% grandparent(GP, C)
+grandparent(GP, C) :-
+    parent(GP, P),
+    parent(P, C).
+
+% grandfather(GF, C)
+grandfather(GF, C) :-
+    grandparent(GF, C),
+    male(GF).
+
+% grandmother(GM, C)
+grandmother(GM, C) :-
+    grandparent(GM, C),
+    female(GM).
+
+% ancestor(A, D)
+ancestor(A, D) :-
+    parent(A, D).
+
+ancestor(A, D) :-
+    parent(P, D),
+    ancestor(A, P).
+
+% descendent(D, A)
+descendent(D, A) :-
+    ancestor(A, D).
+
+% uncle(U, X) – brother of a parent
+uncle(U, X) :-
+    parent(P, X),
+    brother(U, P).
+
+% aunt(A, X) – sister of a parent
+aunt(A, X) :-
+    parent(P, X),
+    sister(A, P).
+
+% cousin(C1, C2) – their parents are siblings
+cousin(C1, C2) :-
+    parent(P1, C1),
+    parent(P2, C2),
+    sibling(P1, P2),
+    C1 \= C2.
+%examples---
+% parent(X, robert).
+% parent(john, X).
+% father(X, mary).
+% sibling(mary, X).
+% grandfather(X, anna).
+% ancestor(X, sophia).
+
+
+******************************************************************************
+
+2.conc(l1,l2,l3)
+
+% conc(List1, List2, Result)
+% True when Result is the concatenation of List1 and List2.
+
+conc([], L, L).                    % Base case: concatenating [] with L gives L
+
+conc([H|T], L2, [H|R]) :-          % Recursive case: keep the head H,
+    conc(T, L2, R).                % and recursively concatenate the tail
+
+
+
+
+%conc([1,2,3], [4,5], R).
+%conc(X, Y, [1,2]).
+
+
+******************************************************************************************************
+
+3. reverse(l,r)
+
+%base case
+reverse([], []).
+
+%recursive case
+
+reverse([H|T], R) :-
+    reverse(T, RT),
+    conc(RT, [H], R).   %if doesnt work replace conc with append
+
+
+%reverse([1,2,3], R).
+%reverse([a,b,c,d], R).
+
+*******************************************************************
+
+4. sum of two numbers
+
+sum(X, Y, S) :- S is X + Y.
+
+
+%?- sum(5, 7, S).
+%?- sum(10, -3, S).
+
+
+
+*************************************************************
+
+5. maximum of two
+
+max(X, Y, X) :- X >= Y.
+max(X, Y, Y) :- Y > X.
+
+
+%?- max(10, 20, M).
+%?- max(50, 12, M).
+
+
+*****************************************
+6. factorial
+
+factorial(0, 1).
+factorial(N, F) :-
+    N > 0,
+    N1 is N - 1,
+    factorial(N1, F1),
+    F is N * F1.
+
+
+%?- factorial(5, F).
+%?- factorial(0, F).
+
+
+*****************************************
+
+7. fibonacci
+
+generate_fib(0, 0).
+generate_fib(1, 1).
+generate_fib(N, T) :-
+    N > 1,
+    N1 is N - 1,
+    N2 is N - 2,
+    generate_fib(N1, T1),
+    generate_fib(N2, T2),
+    T is T1 + T2.
+
+%?- generate_fib(0, T).
+%?- generate_fib(1, T).
+%?- generate_fib(7, T).
+
+
+
+
+******************************************
+
+8.power
+
+power(_, 0, 1).
+power(N, P, A) :-
+    P > 0,
+    P1 is P - 1,
+    power(N, P1, A1),
+    A is N * A1.
+
+%?- power(2, 3, A).
+%?- power(5, 0, A).
+%?- power(3, 4, A).
+
+
+******************************************
+
+9.multiplication
+
+multi(N1, N2, R) :- R is N1 * N2.
+
+
+%?- multi(5, 7, R).
+%?- multi(10, -3, R).
+
+
+
+
+**********************************************************
+
+10. member
+
+memb(X, [X|_]).
+memb(X, [_|T]) :- memb(X, T).
+
+
+%?- memb(3, [1,2,3,4]).
+%?- memb(a, [b,c,d]).
+
+
+
+*************************************************
+
+11. sum of list
+
+sumlist([], 0).
+sumlist([H|T], S) :-
+    sumlist(T, S1),
+    S is H + S1.
+
+
+%?- sumlist([1,2,3,4], S).
+%?- sumlist([], S).
+
+
+
+********************************************************
+
+12. evenlength and odd length
+
+
+evenlength([]).
+evenlength([_|T]) :- oddlength(T).
+
+oddlength([_]).
+oddlength([_|T]) :- evenlength(T).
+
+
+%?- evenlength([1,2,3,4]).
+%- oddlength([1,2,3]).
+%?- evenlength([]).
+%?- oddlength([a]).
+
+
+
+
+***************************************************
+
+13. maximum in a list
+
+
+maxlist([X], X).
+maxlist([H|T], M) :-
+    maxlist(T, M1),
+    (H > M1 -> M = H ; M = M1).
+
+
+%?- maxlist([3,7,2,9,4], M).
+%?- maxlist([10], M).
+
+
+
+****************************************************
+
+14. insert
+
+insert(I, 1, L, [I|L]).
+insert(I, N, [H|T], [H|R]) :-
+    N > 1,
+    N1 is N - 1,
+    insert(I, N1, T, R).
+
+
+%?- insert(x, 1, [a,b,c], R).       % at beginning
+%?- insert(x, 3, [a,b,c], R).       % middle
+%?- insert(x, 4, [a,b,c], R).       % end
+
+
+
+****************************************************
+
+15. delete
+
+
+delete(1, [_|T], T).
+delete(N, [H|T], [H|R]) :-
+    N > 1,
+    N1 is N - 1,
+    delete(N1, T, R).
+
+
+%delete(1, [a,b,c,d], R).        % delete first
+%delete(3, [a,b,c,d], R).        % delete middle
+%delete(4, [a,b,c,d], R).        % delete last
+
+
+&********************************************************
+
+
+
+
