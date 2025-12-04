@@ -1,0 +1,23 @@
+=== Practical 7: Nth Fibonacci ===
+
+
+:- initialization(main).
+
+fib(0, 0).
+fib(1, 1).
+fib(N, F) :- N > 1, N1 is N-1, N2 is N-2, fib(N1, F1), fib(N2, F2), F is F1 + F2.
+
+main :-
+    write('=== Practical Nth Fibonacci ==='), nl, nl,
+    fib(0, R0), write('fib(0) = '), write(R0), nl,
+    fib(6, R6), write('fib(6) = '), write(R6), nl,
+    fib(10, R10), write('fib(10) = '), write(R10), nl.
+
+
+###Output
+
+=== Practical Nth Fibonacci ===
+
+fib(0) = 0
+fib(6) = 8
+fib(10) = 55
