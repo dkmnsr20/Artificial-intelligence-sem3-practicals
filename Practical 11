@@ -1,0 +1,22 @@
+=== Practical 11: Sum of List ===
+
+:- initialization(main).
+
+sumlist([], 0).
+sumlist([H|T], S) :-
+    sumlist(T, S1),
+    S is S1 + H.
+
+main :-
+    write('=== Practical Sum of List ==='), nl, nl,
+    sumlist([1,2,3,4], S1), write('Sum of [1,2,3,4] = '), write(S1), nl,
+    sumlist([10,20,30], S2), write('Sum of [10,20,30] = '), write(S2), nl.
+
+
+###Output 
+
+
+=== Practical Sum of List ===
+
+Sum of [1,2,3,4] = 10
+Sum of [10,20,30] = 60
