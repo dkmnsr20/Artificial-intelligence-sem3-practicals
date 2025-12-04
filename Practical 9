@@ -1,0 +1,23 @@
+=== Practical 9: Multiplication ===
+
+
+:- initialization(main).
+
+multi(_, 0, 0).
+multi(N1, N2, R) :- N2 > 0, N3 is N2-1, multi(N1, N3, R1), R is R1 + N1.
+
+main :-
+    write('=== Practical Multiplication ==='), nl, nl,
+    multi(6, 7, R1), write('6 * 7 = '), write(R1), nl,
+    multi(4, 5, R2), write('4 * 5 = '), write(R2), nl,
+    multi(10, 0, R3), write('10 * 0 = '), write(R3), nl.
+
+
+###Output
+
+
+=== Practical Multiplication ===
+
+6 * 7 = 42
+4 * 5 = 20
+10 * 0 = 0
